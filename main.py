@@ -16,5 +16,5 @@ for bart in ["Bart", "Bartlos"] for country,col in zip(["Bayern", "BW", "Hessen"
 
 # generate plotly scatterplot. X is the country, Y is the Bart/Bartlos category, size is the value
 fig = px.scatter(data, x="Bundesland", y="Bartwuchs", size="Anzahl", color="Anzahl", opacity=1)
-fig.update_layout(height=300)
+fig.update_layout(height=250)
 st.plotly_chart(fig)
