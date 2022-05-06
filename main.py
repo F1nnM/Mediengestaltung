@@ -1,4 +1,3 @@
-import imp
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -39,9 +38,7 @@ fig.update_layout(
     margin=dict(r=430),
     font=dict(
         size=16,
-    ),
-    plot_bgcolor="#0e1117",
-    paper_bgcolor="#0e1117"
+    )
 )
 
 """
