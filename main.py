@@ -91,3 +91,29 @@ Cras ultricies tincidunt orci a placerat. Praesent venenatis ipsum sit amet quam
 
 
 """
+col1, col2 = st.columns(2)
+width = 0
+height = 0
+background = None
+foreground = None
+with col1:
+    with st.expander("Choose your image"):
+        width = st.slider("Width", min_value=0, max_value=600, value=300)
+        height = st.slider("Heigth", min_value=0, max_value=600, value=300)
+        background = st.color_picker("Background color", value="#ffffff")
+        foreground = st.color_picker("Foreground color", value="#000000")
+    
+    """
+    Donec porta est quis porta aliquet. In efficitur enim at velit iaculis, at laoreet elit interdum.
+    - Morbi rutrum tortor ac risus finibus pellentesque.
+    - Sed placerat a massa pulvinar ullamcorper.
+    - Nullam pellentesque quam nisi, nec elementum lacus varius vel.
+    """
+with col2:
+    st.image(f"https://dummyimage.com/{width}x{height}/{background[1:]}/{foreground[1:]}")
+    
+"""
+Mauris luctus id erat quis tempus. Donec pretium, quam et sollicitudin iaculis, nisl orci pellentesque dolor, nec sagittis lacus sapien a arcu. Donec aliquam pulvinar nisl, ut ultricies leo sagittis non.
+Nulla dignissim laoreet vehicula. Maecenas sollicitudin condimentum aliquet. Mauris luctus id erat quis tempus. Donec pretium, quam et sollicitudin iaculis, nisl orci pellentesque dolor, nec sagittis lacus sapien a arcu.
+
+"""
