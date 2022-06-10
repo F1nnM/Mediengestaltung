@@ -4,15 +4,20 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 #st.set_page_config(layout="wide")
-with st.expander("Show/Hide Data Input", expanded=True):
-    data = pd.DataFrame([
-    {
-        "Bundesland": country,
-        "Bartwuchs": bart,
-        "Anzahl": col.slider(f"{country} {bart}", 0, 10),
-    }
-    for bart in ["Bart", "Bartlos"] for country,col in zip(["Bayern", "BW", "Hessen", "NRW"], st.columns(4))])
-    st.session_state.data = data
+
+if 'data' not in st.session_state:
+    # load from json
+    st.session_state.data = pd.read_json('{"Bundesland":{"0":"Bayern (9)","1":"BW (4)","2":"Hessen (17)","3":"NRW (4)","4":"Bayern (9)","5":"BW (4)","6":"Hessen (17)","7":"NRW (4)"},"Bartwuchs":{"0":"Bart (15)","1":"Bart (15)","2":"Bart (15)","3":"Bart (15)","4":"Bartlos (19)","5":"Bartlos (19)","6":"Bartlos (19)","7":"Bartlos (19)"},"Anzahl":{"0":2,"1":3,"2":7,"3":3,"4":7,"5":1,"6":10,"7":1}}')
+
+# with st.expander("Show/Hide Data Input", expanded=False):
+#     data = pd.DataFrame([
+#     {
+#         "Bundesland": country,
+#         "Bartwuchs": bart,
+#         "Anzahl": col.slider(f"{country} {bart}", 0, 10, st.session_state.data["Bundesland" == country]["Bartwuchs" == bart]),
+#     }
+#     for bart in ["Bart", "Bartlos"] for country,col in zip(["Bayern", "BW", "Hessen", "NRW"], st.columns(4))])
+#     st.session_state.data = data
 
 data = st.session_state.data
 
@@ -32,7 +37,7 @@ fig = px.scatter(data,
     color="Anzahl",
     opacity=1,
     title="Bartwuchs nach Bundesland",
-    color_continuous_scale="RdBu")
+    color_continuous_scale="turbo")
 fig.update_layout(height=450)
 fig.update_layout(
     margin=dict(r=430),
@@ -80,6 +85,7 @@ Phasellus condimentum enim ac urna interdum, in ullamcorper sapien ullamcorper.
 ## Nunc aliquam, ipsum sit.
 Amet ornare congue, risus felis pulvinar magna, id hendrerit ligula lorem et sapien.
 """)
+st.sidebar.write(data)
 
 """
 ## Nulla dignissim laoreet vehicula
